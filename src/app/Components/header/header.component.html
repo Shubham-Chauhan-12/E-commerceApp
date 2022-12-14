@@ -1,0 +1,17 @@
+<mat-toolbar color="primary" class="navbar">
+    <div>
+        <!-- <button mat-stroked-button routerLink="/admin">Cars 24x7</button> -->
+        Cars 24x7
+    </div>
+    <div>India's No.1 Car's Platform</div>
+    <div>
+        <button mat-raised-button color="accent" routerLink="user-sign-up" class="btn">REGISTER</button> 
+        <button mat-raised-button color="accent" [matMenuTriggerFor]="menu" class="btn">LOGIN</button>
+            <mat-menu #menu="matMenu">
+                <button mat-menu-item routerLink="admin">ADMIN LOGIN</button>
+                <button mat-menu-item routerLink="user-login">USER LOGIN</button>
+            </mat-menu>
+    </div>
+</mat-toolbar>
+
+
