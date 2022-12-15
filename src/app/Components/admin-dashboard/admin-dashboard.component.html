@@ -1,0 +1,40 @@
+<mat-toolbar color="primary" class="navbar">
+  <div>
+    <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+      <mat-icon>more_vert</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item>
+        <mat-icon>add</mat-icon>
+        <span routerLink="/admin-add">Add Vehicle</span>
+      </button>
+      <!-- <button mat-menu-item disabled>
+              <mat-icon>voicemail</mat-icon>
+              <span>Check voice mail</span>
+            </button> -->
+      <button mat-menu-item>
+        <mat-icon>logout</mat-icon>
+        <span>Logout</span>
+      </button>
+    </mat-menu>
+    <button mat-icon-button>
+      <mat-icon>keyboard_backspace</mat-icon>
+    </button>
+  </div>
+  <div>
+    Cars 24x7
+  </div>
+  <div>Welcome Admin</div>
+
+</mat-toolbar>
+
+<div *ngFor="let x of vehicle">
+  Vehicle id : {{x.vehicleId}} <br>
+  VehicleBrand : {{x.vehicleBrand}} <br>
+  VehicleModel : {{x.vehicleModel}} <br>
+  VehicleVariant : {{x.vehicleVariant}} <br>
+  VehicleColor : {{x.vehicleColor}} <br>
+  ManufactureYear : {{x.manufactureYear}} <br>
+  Price : {{x.price}} <br>
+<hr>
+</div>
