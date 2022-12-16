@@ -1,0 +1,58 @@
+<mat-toolbar color="primary" class="navbar">
+    <div><button mat-icon-button>
+            <mat-icon>keyboard_return</mat-icon>
+        </button>
+
+
+    </div>
+    <div>
+        Cars 24x7
+    </div>
+
+    <div>
+        <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+            <mat-icon>menu</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+            <button mat-menu-item>
+                <mat-icon>shopping_cart</mat-icon>
+                <span>Go to Cart</span>
+            </button>
+            <button mat-menu-item>
+                <mat-icon>logout</mat-icon>
+                <span>Logout</span>
+            </button>
+        </mat-menu>
+
+    </div>
+</mat-toolbar>
+
+<div>
+    Vehicle Details
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Brand</th>
+                <th scope="col">Model</th>
+                <th scope="col">Variant</th>
+                <th scope="col">Color</th>
+                <th scope="col">Year</th>
+                <th scope="col">Price</th>
+                <th scope="col">Add to Cart</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let x of vehicle">
+                <td>{{x.vehicleId}}</td>
+                <td>{{x.vehicleBrand}}</td>
+                <td>{{x.vehicleModel}}</td>
+                <td>{{x.vehicleVariant}}</td>
+                <td>{{x.vehicleColor}}</td>
+                <td>{{x.manufactureYear}}</td>
+                <td>{{x.price}}</td>
+                <td><button mat-icon-button><mat-icon>add</mat-icon></button></td>
+            </tr>
+        </tbody>
+    </table>
+</div>

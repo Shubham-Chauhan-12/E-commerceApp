@@ -22,7 +22,8 @@ import { UserSignUpComponent } from './Components/user-sign-up/user-sign-up.comp
 import { MatSelectModule } from '@angular/material/select';
 import { MatRadioModule } from '@angular/material/radio';
 import { AdminDashboardComponent } from './Components/admin-dashboard/admin-dashboard.component';
-import { AdminAddVehicleComponent } from './Components/admin-add-vehicle/admin-add-vehicle.component';
+import { UserdashboardComponent } from './Components/userdashboard/userdashboard.component';
+
 
 
 
@@ -34,7 +35,8 @@ import { AdminAddVehicleComponent } from './Components/admin-add-vehicle/admin-a
     AdminComponent,
     UserSignUpComponent,
     AdminDashboardComponent,
-    AdminAddVehicleComponent,
+    UserdashboardComponent,
+
   ],
   imports: [
     BrowserModule,

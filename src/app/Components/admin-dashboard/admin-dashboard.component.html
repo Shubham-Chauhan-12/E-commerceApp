@@ -4,14 +4,10 @@
       <mat-icon>more_vert</mat-icon>
     </button>
     <mat-menu #menu="matMenu">
-      <button mat-menu-item>
+      <button mat-menu-item data-bs-toggle="modal" data-bs-target="#exampleModalCenter1">
         <mat-icon>add</mat-icon>
-        <span routerLink="/admin-add">Add Vehicle</span>
+        <span>Add Vehicle</span>
       </button>
-      <!-- <button mat-menu-item disabled>
-              <mat-icon>voicemail</mat-icon>
-              <span>Check voice mail</span>
-            </button> -->
       <button mat-menu-item>
         <mat-icon>logout</mat-icon>
         <span>Logout</span>
@@ -27,14 +23,216 @@
   <div>Welcome Admin</div>
 
 </mat-toolbar>
-
-<div *ngFor="let x of vehicle">
-  Vehicle id : {{x.vehicleId}} <br>
-  VehicleBrand : {{x.vehicleBrand}} <br>
-  VehicleModel : {{x.vehicleModel}} <br>
-  VehicleVariant : {{x.vehicleVariant}} <br>
-  VehicleColor : {{x.vehicleColor}} <br>
-  ManufactureYear : {{x.manufactureYear}} <br>
-  Price : {{x.price}} <br>
-<hr>
+<div>
+Vehicle Details
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Id</th>
+      <th scope="col">Brand</th>
+      <th scope="col">Model</th>
+      <th scope="col">Variant</th>
+      <th scope="col">Color</th>
+      <th scope="col">Year</th>
+      <th scope="col">Price</th>
+      <th scope="col">Edit</th>
+      <th scope="col">Delete</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let x of vehicle">
+      <td>{{x.vehicleId}}</td>
+      <td>{{x.vehicleBrand}}</td>
+      <td>{{x.vehicleModel}}</td>
+      <td>{{x.vehicleVariant}}</td>
+      <td>{{x.vehicleColor}}</td>
+      <td>{{x.manufactureYear}}</td>
+      <td>{{x.price}}</td>
+      <td><button mat-icon-button data-bs-toggle="modal" data-bs-target="#exampleModalCenter"><mat-icon>edit</mat-icon></button></td>
+      <td><button mat-icon-button (click)="deleteB(x.vehicleId)"><mat-icon>delete</mat-icon></button></td>
+    </tr>
+  </tbody>
+</table>
 </div>
+
+
+
+
+
+
+
+
+
+
+
+<!--Edit  Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Edit Vehicle Data</h5>
+        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">CLOSE</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+        <form [formGroup]="editVehicleForm" (ngSubmit)="submit()">
+          <div>
+            <mat-form-field appearance="outline">
+              <mat-label>Vehicle-Id</mat-label>
+              <input matInput type="vehicleId" name="vehicleId" formControlName="vehicleId" id="vehicleId">
+
+            </mat-form-field>
+          </div>
+          <div>
+            <mat-form-field appearance="outline">
+              <mat-label>Brand</mat-label>
+              <input matInput type="vehicleBrand" name="vehicleBrand" formControlName="vehicleBrand" id="vehicleBrand">
+
+            </mat-form-field>
+          </div>
+          <div>
+            <mat-form-field appearance="outline">
+              <mat-label>Model</mat-label>
+              <input matInput type="vehicleModel" name="vehicleModel" formControlName="vehicleModel" id="vehicleModel">
+
+            </mat-form-field>
+          </div>
+          <div>
+            <mat-form-field appearance="outline">
+              <mat-label>Variant</mat-label>
+              <input matInput type="vehicleVariant" name="vehicleVariant" formControlName="vehicleVariant"
+                id="vehicleVariant">
+
+            </mat-form-field>
+          </div>
+          <div>
+            <mat-form-field appearance="outline">
+              <mat-label>Color</mat-label>
+              <input matInput type="vehicleColor" name="vehicleColor" formControlName="vehicleColor" id="vehicleColor">
+
+            </mat-form-field>
+          </div>
+          <div>
+            <mat-form-field appearance="outline">
+              <mat-label>Manufacture Year</mat-label>
+              <input matInput type="manufactureYear" name="manufactureYear" formControlName="manufactureYear"
+                id="manufactureYear">
+            </mat-form-field>
+          </div>
+          <div>
+            <mat-form-field appearance="outline">
+              <mat-label>Price</mat-label>
+              <input matInput type="price" name="price" formControlName="price" id="price">
+            </mat-form-field>
+          </div>
+
+          <div id="btn">
+            <button type="submit" [disabled]="!editVehicleForm.valid" mat-raised-button color="primary"> UPDATE
+            </button>
+          </div>
+        </form>
+
+      </div>
+      <!-- <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">UPDATE</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div> -->
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+<!-- Add modal -->
+<div class="modal fade" id="exampleModalCenter1" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Edit Vehicle Data</h5>
+        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">CLOSE</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+        <form [formGroup]="addVehicleForm" (ngSubmit)="addSubmit()">
+          <div>
+            <mat-form-field appearance="outline">
+              <mat-label>Vehicle-Id</mat-label>
+              <input matInput type="vehicleId" name="vehicleId" formControlName="vehicleId" id="vehicleId">
+
+            </mat-form-field>
+          </div>
+          <div>
+            <mat-form-field appearance="outline">
+              <mat-label>Brand</mat-label>
+              <input matInput type="vehicleBrand" name="vehicleBrand" formControlName="vehicleBrand" id="vehicleBrand">
+
+            </mat-form-field>
+          </div>
+          <div>
+            <mat-form-field appearance="outline">
+              <mat-label>Model</mat-label>
+              <input matInput type="vehicleModel" name="vehicleModel" formControlName="vehicleModel" id="vehicleModel">
+
+            </mat-form-field>
+          </div>
+          <div>
+            <mat-form-field appearance="outline">
+              <mat-label>Variant</mat-label>
+              <input matInput type="vehicleVariant" name="vehicleVariant" formControlName="vehicleVariant"
+                id="vehicleVariant">
+
+            </mat-form-field>
+          </div>
+          <div>
+            <mat-form-field appearance="outline">
+              <mat-label>Color</mat-label>
+              <input matInput type="vehicleColor" name="vehicleColor" formControlName="vehicleColor" id="vehicleColor">
+
+            </mat-form-field>
+          </div>
+          <div>
+            <mat-form-field appearance="outline">
+              <mat-label>Manufacture Year</mat-label>
+              <input matInput type="manufactureYear" name="manufactureYear" formControlName="manufactureYear"
+                id="manufactureYear">
+            </mat-form-field>
+          </div>
+          <div>
+            <mat-form-field appearance="outline">
+              <mat-label>Price</mat-label>
+              <input matInput type="price" name="price" formControlName="price" id="price">
+            </mat-form-field>
+          </div>
+
+          <div id="btn">
+            <button type="submit" [disabled]="!addVehicleForm.valid" mat-raised-button color="primary"> ADD
+            </button>
+          </div>
+        </form>
+
+      </div>
+      <!-- <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">UPDATE</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div> -->
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+

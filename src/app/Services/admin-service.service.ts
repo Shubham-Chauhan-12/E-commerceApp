@@ -12,5 +12,20 @@ export class AdminServiceService {
 
   adminGet():Observable<Array<VehiclesData>>{
     return this.httpClient.get<Array<VehiclesData>>("http://localhost:9000/vehicles/v1/get-vehicle")
+  } 
+
+  adminAdd(addData:any):Observable<VehiclesData>{
+    return this.httpClient.post<VehiclesData>("http://localhost:8086/vehicles/v1/save-vehicle",addData)
   }
+
+  adminUpdate(upData:any):Observable<VehiclesData>{
+    return this.httpClient.put<VehiclesData>("http://localhost:8086/vehicles/v1/update-vehicle",upData)
+  }
+
+  adminDel(vId:any):Observable<VehiclesData>{
+    return this.httpClient.delete<VehiclesData>("http://localhost:8086/vehicles/v1/delete-vehicle/" + vId)
+  }
+
+
+  
 }
