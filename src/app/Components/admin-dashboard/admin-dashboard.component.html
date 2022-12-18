@@ -29,6 +29,7 @@
     <thead>
       <tr>
         <th scope="col">Id</th>
+        <th scope="col">Image</th>
         <th scope="col">Brand</th>
         <th scope="col">Model</th>
         <th scope="col">Variant</th>
@@ -42,6 +43,7 @@
     <tbody>
       <tr *ngFor="let x of vehicle">
         <td>{{x.vehicleId}}</td>
+        <td><img src="../../../assets/{{x.vehicleModel}}.png" alt=""></td>
         <td>{{x.vehicleBrand}}</td>
         <td>{{x.vehicleModel}}</td>
         <td>{{x.vehicleVariant}}</td>

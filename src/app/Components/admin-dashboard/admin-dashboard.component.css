@@ -20,3 +20,8 @@ mat-form-field{
 #table{
     background-color: antiquewhite;
 }
+
+img{
+    width: 100px;
+    border-radius: 30%;
+}
