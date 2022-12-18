@@ -13,7 +13,7 @@ export class AdminServiceService {
   constructor(private httpClient :HttpClient) { }
 
   adminGet():Observable<Array<VehiclesData>>{
-    return this.httpClient.get<Array<VehiclesData>>("http://localhost:9000/vehicles/v1/get-vehicle")
+    return this.httpClient.get<Array<VehiclesData>>("http://localhost:8086/vehicles/v1/get-vehicle")
   } 
 
   adminAdd(addData:any):Observable<VehiclesData>{

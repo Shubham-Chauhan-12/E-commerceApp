@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validator, FormBuilder, Validators, AbstractControl } from '@angular/forms'
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { UserServiceService } from 'src/app/Services/user-service.service';
 
@@ -11,11 +12,11 @@ import { UserServiceService } from 'src/app/Services/user-service.service';
 export class UserLoginComponent {
   hide = true;
 
-  constructor(private fb: FormBuilder,private route:Router,private service:UserServiceService) { }
+  constructor(private fb: FormBuilder,private route:Router,private service:UserServiceService,private _snackBar:MatSnackBar) { }
 
   userLoginForm = this.fb.group({
     email: ['',[Validators.required,Validators.email]],
-    password: ['',[Validators.required, Validators.pattern(/^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{5,}$/)]]
+    password: ['',[Validators.required]]
   })
  
 
@@ -23,6 +24,10 @@ export class UserLoginComponent {
     
     this.service.userLogin(this.userLoginForm.value).subscribe((data:any) => {
       this.service.loginUser(data.token)
+      this._snackBar.open('User-Logged-In', 'successfully', {
+        duration: 1500,
+        panelClass: ['mat-toolbar', 'mat-warm']
+      })
       this.route.navigate(['/user-dashboard'])
     })
     

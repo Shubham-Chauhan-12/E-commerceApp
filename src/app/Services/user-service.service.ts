@@ -13,13 +13,13 @@ export class UserServiceService {
 
   register(data:any){
 
-    return this.http.post("http://localhost:9000/register",data)
+    return this.http.post("http://localhost:8085/register",data)
 
   }
 
 
   userLogin(data:any):any{
-    return this.http.post("http://localhost:9000/login", data)
+    return this.http.post("http://localhost:8085/login", data)
   } 
 
   loginUser(token: any) {
@@ -51,7 +51,7 @@ export class UserServiceService {
   header = new HttpHeaders().set("content-type","Application/Json")
 
   userGet():Observable<Array<UserModel>>{
-    return this.http.get<Array<UserModel>>("http://localhost:9000/api/v1/userview-vehicle" , {headers:this.header})
+    return this.http.get<Array<UserModel>>("http://localhost:8085/api/v1/userview-vehicle" , {headers:this.header})
   } 
 
 

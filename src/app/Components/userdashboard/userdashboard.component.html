@@ -1,9 +1,7 @@
 <mat-toolbar color="primary" class="navbar">
-    <div><button mat-icon-button>
-            <mat-icon>keyboard_return</mat-icon>
-        </button>
-
-
+    <div>
+        Hi User
+    
     </div>
     <div>
         Cars 24x7
@@ -27,7 +25,7 @@
     </div>
 </mat-toolbar>
 
-<div>
+<!-- <div>
     Vehicle Details
     <table class="table">
         <thead>
@@ -55,4 +53,29 @@
             </tr>
         </tbody>
     </table>
+</div> -->
+<div class="container">
+    <mat-card class="example-card" *ngFor="let x of userVehicle">
+        <mat-card-header>
+            <div mat-card-avatar class="example-header-image"></div>
+            <mat-card-title>{{x.vehicleBrand}}</mat-card-title>
+            <mat-card-subtitle>{{x.vehicleModel}}</mat-card-subtitle>
+        </mat-card-header>
+        <img mat-card-image src="../../../assets/{{x.vehicleModel}}.png" alt="VehicleImg">
+        <mat-card-content>
+            <div id="inline">
+                <div>Color : {{x.vehicleColor}}</div>
+
+                <div>Variant : {{x.vehicleVariant}}</div>
+            </div>
+            <div id="inline2">
+                <div>Year : {{x.manufactureYear}}</div>
+                <div>Price : {{x.price}}</div>
+            </div>
+
+        </mat-card-content>
+        <mat-card-actions>
+            <button mat-raised-button color="primary">Add to Cart</button>
+        </mat-card-actions>
+    </mat-card>
 </div>

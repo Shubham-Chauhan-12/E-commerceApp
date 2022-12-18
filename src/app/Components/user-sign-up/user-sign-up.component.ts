@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
+import { UserServiceService } from 'src/app/Services/user-service.service';
 
 @Component({
   selector: 'app-user-sign-up',
@@ -9,18 +12,27 @@ import { FormBuilder, Validators } from '@angular/forms';
 export class UserSignUpComponent {
 
   addressForm = this.fb.group({
-    firstName: [null, [Validators.required,Validators.minLength(6)]],
-    lastName: [null, [Validators.required,Validators.minLength(6)]],
-    mobileNo: [null, [Validators.required,Validators.pattern("[0-9 ]{10}")]],
-    emailId: [null, [Validators.required,Validators.email]],
-    password: [null, [Validators.required, Validators.pattern(/^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{5,}$/)]],
-    confirmPassword: [null, [Validators.required, Validators.pattern(/^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{5,}$/)]]
+    firstName: [null, [Validators.required, Validators.minLength(4)]],
+    lastName: [null, [Validators.required, Validators.minLength(4)]],
+    mobileNo: [null, [Validators.required, Validators.pattern("[0-9 ]{10}")]],
+    emailId: [null, [Validators.required, Validators.email]],
+    password: [null, Validators.required],
+    confirmPassword: [null, Validators.required]
   });
+  
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, private route: Router, private service: UserServiceService,private _snackBar:MatSnackBar) { }
 
-  onSubmit(): void {
-    alert('Thanks!');
+  onSubmit() {
+
+    this.service.register(this.addressForm.value).subscribe(data => {
+      this._snackBar.open('User-Register', 'successfully', {
+        duration: 1500,
+        panelClass: ['mat-toolbar', 'mat-warm']
+      })
+    })
+    this.route.navigateByUrl("/user-login")
+
   }
 
   // get firstName() { return this.addressForm.get("firstName") }

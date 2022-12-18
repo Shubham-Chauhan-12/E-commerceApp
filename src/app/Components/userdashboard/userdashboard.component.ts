@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { VehiclesData } from 'src/app/Model/model';
 import { UserServiceService } from 'src/app/Services/user-service.service';
@@ -12,7 +13,7 @@ export class UserdashboardComponent implements OnInit {
 
   userVehicle: any[] = []
 
-  constructor(private service: UserServiceService, private route: Router) { }
+  constructor(private service: UserServiceService, private route: Router, private _snackBar: MatSnackBar) { }
 
 
 
@@ -24,6 +25,10 @@ export class UserdashboardComponent implements OnInit {
 
   userlogout() {
     this.service.logout()
+    this._snackBar.open('User Logout', 'successfully', {
+      duration: 1500,
+      panelClass: ['mat-toolbar', 'mat-primary']
+    })
     this.route.navigateByUrl("/header")
   }
 }
