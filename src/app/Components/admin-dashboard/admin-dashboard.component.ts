@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Route, Router } from '@angular/router';
 import { VehiclesData } from 'src/app/Model/model';
 import { AdminServiceService } from 'src/app/Services/admin-service.service';
@@ -11,9 +12,9 @@ import { AdminServiceService } from 'src/app/Services/admin-service.service';
 })
 export class AdminDashboardComponent {
 
-  vehicle : VehiclesData[] =[]
+  vehicle: VehiclesData[] = []
 
-  constructor(private service:AdminServiceService,private router:Router ,private fb: FormBuilder ){}
+  constructor(private service: AdminServiceService, private router: Router, private fb: FormBuilder, private _snackBar: MatSnackBar) { }
 
 
   editVehicleForm = this.fb.group({
@@ -40,24 +41,34 @@ export class AdminDashboardComponent {
 
 
 
-  submit(){
+  submit() {
     this.service.adminUpdate(this.editVehicleForm.value).subscribe(data => {
-      alert("updated")
+      this._snackBar.open('Vehicle Updated', 'successfully', {
+        duration: 2000,
+        panelClass: ['mat-toolbar', 'mat-warm']
+      })
     })
+    window.onload
   }
 
 
   ngOnInit(): void {
-    this.service.adminGet().subscribe(data =>{
+    this.service.adminGet().subscribe(data => {
       this.vehicle = data
     })
   }
 
 
-  addSubmit(){
+  addSubmit() {
     this.service.adminAdd(this.addVehicleForm.value).subscribe(data => {
       console.log(data)
+      this._snackBar.open('Vehicle Added', 'successfully', {
+        duration: 2000,
+        panelClass: ['mat-toolbar', 'mat-warm']
+      })
     })
+
+    window.onload
   }
 
 
@@ -65,15 +76,31 @@ export class AdminDashboardComponent {
   //   this.service.adminDel()
   // }
 
-  deleteB(vehicleId:any){
+  deleteB(vehicleId: any) {
 
     this.service.adminDel(vehicleId).subscribe(data => {
       console.log(vehicleId);
+      this._snackBar.open('Vehicle Deleted', 'successfully', {
+        duration: 2000,
+        panelClass: ['mat-toolbar', 'mat-warm']
+      })
     })
-    
+
+    window.onload
+  }
+
+  preview(vehicleId: any) {
+
 
   }
 
+  adminLogout() {
+    this.service.guard = false
+    this._snackBar.open('Admin LogOut', 'success', {
+      duration: 2000,
+      panelClass: ['mat-toolbar', 'mat-warm']
+    })
+    this.router.navigate(['/header'])
+  }
+
 }
-
-

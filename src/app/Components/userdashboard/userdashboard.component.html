@@ -18,7 +18,7 @@
                 <mat-icon>shopping_cart</mat-icon>
                 <span>Go to Cart</span>
             </button>
-            <button mat-menu-item>
+            <button mat-menu-item (click)="userlogout()">
                 <mat-icon>logout</mat-icon>
                 <span>Logout</span>
             </button>
@@ -43,7 +43,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let x of vehicle">
+            <tr *ngFor="let x of userVehicle">
                 <td>{{x.vehicleId}}</td>
                 <td>{{x.vehicleBrand}}</td>
                 <td>{{x.vehicleModel}}</td>

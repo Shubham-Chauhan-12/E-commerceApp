@@ -6,6 +6,8 @@ import { HeaderComponent } from './Components/header/header.component';
 import { UserLoginComponent } from './Components/user-login/user-login.component';
 import { UserSignUpComponent } from './Components/user-sign-up/user-sign-up.component';
 import { UserdashboardComponent } from './Components/userdashboard/userdashboard.component';
+import { AdminGuard } from './Guards/admin.guard';
+import { UserGuard } from './Guards/user.guard';
 
 
 const routes: Routes = [
@@ -19,15 +21,17 @@ const routes: Routes = [
   },
   {
     path:"admin-dashboard",
+    canActivate:[AdminGuard],
     component:AdminDashboardComponent
   },
   {
     path:"admin",
-    component:AdminComponent
+    component:AdminComponent,
+    
   },
   {
     path:"user-login",
-    component:UserLoginComponent
+    component:UserLoginComponent,
   },
   {
     path:"user-sign-up",
@@ -35,7 +39,8 @@ const routes: Routes = [
   },
   {
     path:"user-dashboard",
-    component:UserdashboardComponent
+    component:UserdashboardComponent,
+    canActivate:[UserGuard],
   }
 ];
 

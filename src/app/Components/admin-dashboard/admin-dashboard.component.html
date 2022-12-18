@@ -8,14 +8,11 @@
         <mat-icon>add</mat-icon>
         <span>Add Vehicle</span>
       </button>
-      <button mat-menu-item>
+      <button mat-menu-item (click)="adminLogout()">
         <mat-icon>logout</mat-icon>
         <span>Logout</span>
       </button>
     </mat-menu>
-    <button mat-icon-button>
-      <mat-icon>keyboard_backspace</mat-icon>
-    </button>
   </div>
   <div>
     Cars 24x7
@@ -24,35 +21,37 @@
 
 </mat-toolbar>
 <div>
-Vehicle Details
-<table class="table">
-  <thead>
-    <tr>
-      <th scope="col">Id</th>
-      <th scope="col">Brand</th>
-      <th scope="col">Model</th>
-      <th scope="col">Variant</th>
-      <th scope="col">Color</th>
-      <th scope="col">Year</th>
-      <th scope="col">Price</th>
-      <th scope="col">Edit</th>
-      <th scope="col">Delete</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let x of vehicle">
-      <td>{{x.vehicleId}}</td>
-      <td>{{x.vehicleBrand}}</td>
-      <td>{{x.vehicleModel}}</td>
-      <td>{{x.vehicleVariant}}</td>
-      <td>{{x.vehicleColor}}</td>
-      <td>{{x.manufactureYear}}</td>
-      <td>{{x.price}}</td>
-      <td><button mat-icon-button data-bs-toggle="modal" data-bs-target="#exampleModalCenter"><mat-icon>edit</mat-icon></button></td>
-      <td><button mat-icon-button (click)="deleteB(x.vehicleId)"><mat-icon>delete</mat-icon></button></td>
-    </tr>
-  </tbody>
-</table>
+  <div id="detail"> Vehicle Details</div>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Brand</th>
+        <th scope="col">Model</th>
+        <th scope="col">Variant</th>
+        <th scope="col">Color</th>
+        <th scope="col">Year</th>
+        <th scope="col">Price</th>
+        <th scope="col">Edit</th>
+        <th scope="col">Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let x of vehicle">
+        <td>{{x.vehicleId}}</td>
+        <td>{{x.vehicleBrand}}</td>
+        <td>{{x.vehicleModel}}</td>
+        <td>{{x.vehicleVariant}}</td>
+        <td>{{x.vehicleColor}}</td>
+        <td>{{x.manufactureYear}}</td>
+        <td>{{x.price}}</td>
+        <td><button mat-icon-button data-bs-toggle="modal" data-bs-target="#exampleModalCenter"
+            (click)="preview(x.vehicleId)"><mat-icon>edit</mat-icon></button></td>
+        <td><button mat-icon-button (click)="deleteB(x.vehicleId)"><mat-icon>delete</mat-icon></button></td>
+      </tr>
+    </tbody>
+  </table>
 </div>
 
 
@@ -71,9 +70,9 @@ Vehicle Details
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Edit Vehicle Data</h5>
+        <div class="modal-title" id="exampleModalLongTitle">Edit Vehicle Data</div>
         <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">CLOSE</span>
+          <span aria-hidden="true"><mat-icon>close</mat-icon></span>
         </button>
       </div>
       <div class="modal-body">
@@ -130,7 +129,7 @@ Vehicle Details
           </div>
 
           <div id="btn">
-            <button type="submit" [disabled]="!editVehicleForm.valid" mat-raised-button color="primary"> UPDATE
+            <button type="submit" [disabled]="!editVehicleForm.valid" mat-raised-button color="primary"data-bs-dismiss="modal" aria-label="Close"> UPDATE
             </button>
           </div>
         </form>
@@ -155,9 +154,9 @@ Vehicle Details
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Edit Vehicle Data</h5>
+        <div class="modal-title" id="exampleModalLongTitle">Add Vehicle Data</div>
         <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">CLOSE</span>
+          <span aria-hidden="true"><mat-icon>close</mat-icon></span>
         </button>
       </div>
       <div class="modal-body">
@@ -214,7 +213,8 @@ Vehicle Details
           </div>
 
           <div id="btn">
-            <button type="submit" [disabled]="!addVehicleForm.valid" mat-raised-button color="primary"> ADD
+            <button type="submit" [disabled]="!addVehicleForm.valid" mat-raised-button color="primary"
+              data-bs-dismiss="modal" aria-label="Close"> ADD
             </button>
           </div>
         </form>
@@ -227,12 +227,3 @@ Vehicle Details
     </div>
   </div>
 </div>
-
-
-
-
-
-
-
-
-

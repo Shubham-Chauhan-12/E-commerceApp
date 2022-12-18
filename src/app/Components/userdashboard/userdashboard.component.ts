@@ -1,33 +1,29 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { VehiclesData } from 'src/app/Model/model';
+import { UserServiceService } from 'src/app/Services/user-service.service';
 
 @Component({
   selector: 'app-userdashboard',
   templateUrl: './userdashboard.component.html',
   styleUrls: ['./userdashboard.component.css']
 })
-export class UserdashboardComponent {
+export class UserdashboardComponent implements OnInit {
 
-  vehicle: VehiclesData[] = [{
-    "vehicleId": 100,
-    "vehicleBrand": "Vw",
-    "vehicleModel": "Po",
-    "vehicleVariant": "Diesel",
-    "vehicleColor": "Red",
-    "manufactureYear": 2020,
-    "price": 800,
-    "emailOfAdmin": "shubham@email.com",
-    "passwordOfAdmin": "pb@123"
-  }, {
-    "vehicleId": 101,
-    "vehicleBrand": "Vw",
-    "vehicleModel": "Polo",
-    "vehicleVariant": "Diesel",
-    "vehicleColor": "Red",
-    "manufactureYear": 2020,
-    "price": 800000,
-    "emailOfAdmin": "shubham@email.com",
-    "passwordOfAdmin": "pb@123"
-  }]
+  userVehicle: any[] = []
 
+  constructor(private service: UserServiceService, private route: Router) { }
+
+
+
+  ngOnInit(): void {
+    this.service.userGet().subscribe(data => {
+      this.userVehicle = data
+    })
+  }
+
+  userlogout() {
+    this.service.logout()
+    this.route.navigateByUrl("/header")
+  }
 }

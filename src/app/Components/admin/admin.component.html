@@ -1,9 +1,18 @@
+<mat-toolbar color="primary" class="navbar">
+    <div>
+        Cars 24x7
+    </div>
+    <div>India's No.1 Car's Platform</div>
+    <div>
+        <button mat-raised-button color="accent" routerLink="/header" id="home"><mat-icon>home</mat-icon>Home</button>
+    </div>
+</mat-toolbar>
 <mat-card>
     <mat-card-content>
         <div id="title">
             <mat-icon id="icon">admin_panel_settings</mat-icon>
         </div>
-        <form [formGroup]="adminLoginForm" (ngSubmit)="submit()">
+        <form [formGroup]="adminLoginForm" (ngSubmit)="adminLogin()">
             <div>
                 <mat-form-field appearance="outline" class="email-input">
                     <mat-label>Email</mat-label>
@@ -27,8 +36,8 @@
                     <mat-error *ngIf="password?.errors?.['required']">
                         Password is required
                     </mat-error>
-                    <mat-error *ngIf="password?.errors?.['pattern']">
-                        Use Correct Password combination
+                    <mat-error *ngIf="password?.errors?.['minlength']">
+                        Password is too short
                     </mat-error>
                 </mat-form-field>
             </div>

@@ -1,3 +1,17 @@
 mat-form-field{
     display: block;
 }
+
+#exampleModalLongTitle{
+    font-size: x-large;
+    font-style: italic;
+    color: crimson;
+}
+
+#btn{
+    text-align: center;
+}
+
+#detail{
+ text-align: center;
+}
