@@ -21,7 +21,7 @@ const routes: Routes = [
   },
   {
     path:"admin-dashboard",
-    // canActivate:[AdminGuard],
+    canActivate:[AdminGuard],
     component:AdminDashboardComponent
   },
   {

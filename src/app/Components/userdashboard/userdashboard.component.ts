@@ -31,4 +31,12 @@ export class UserdashboardComponent implements OnInit {
     })
     this.route.navigateByUrl("/header")
   }
+
+
+  order(){
+    this._snackBar.open(' Wohoo Order Placed ', 'successfully', {
+      duration: 2500,
+      panelClass: ['mat-toolbar', 'mat-primary']
+    })
+  }
 }

@@ -25,6 +25,7 @@ export class UserSignUpComponent {
 
   onSubmit() {
 
+    if(this.addressForm.value.password==this.addressForm.value.confirmPassword){
     this.service.register(this.addressForm.value).subscribe(data => {
       this._snackBar.open('User-Register', 'successfully', {
         duration: 1500,
@@ -32,6 +33,10 @@ export class UserSignUpComponent {
       })
     })
     this.route.navigateByUrl("/user-login")
+  }
+  else{
+    alert("Password and Confirm Password Not matched")
+  }
 
   }
 

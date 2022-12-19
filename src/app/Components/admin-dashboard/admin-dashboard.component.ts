@@ -48,7 +48,7 @@ export class AdminDashboardComponent {
         panelClass: ['mat-toolbar', 'mat-warm']
       })
     })
-    window.onload
+    
   }
 
 
