@@ -23,12 +23,16 @@ export class UserLoginComponent {
   submit(){
     
     this.service.userLogin(this.userLoginForm.value).subscribe((data:any) => {
-      this.service.loginUser(data.token)
-      this._snackBar.open('User-Logged-In', 'successfully', {
+          this.service.loginUser(data.token)
+       this._snackBar.open('User-Logged-In', 'successfully', {
         duration: 1500,
         panelClass: ['mat-toolbar', 'mat-warm']
       })
+      
       this.route.navigate(['/user-dashboard'])
+    },(err:any)=>{
+
+      alert("Invalid Credentials or User Not Registered")
     })
     
   }

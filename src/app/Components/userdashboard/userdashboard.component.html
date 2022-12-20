@@ -1,7 +1,7 @@
 <mat-toolbar color="primary" class="navbar">
     <div>
         Hi User
-    
+
     </div>
     <div>
         Cars 24x7
@@ -75,32 +75,36 @@
 
         </mat-card-content>
         <mat-card-actions>
-            <button mat-raised-button color="primary" data-bs-toggle="modal" data-bs-target="#exampleModalCenter">Order</button>
+            <button mat-raised-button color="primary" data-bs-toggle="modal"
+                data-bs-target="#exampleModalCenter" (click)="cart(x.vehicleModel)">Order</button>
         </mat-card-actions>
     </mat-card>
 </div>
 
 
-  
-  <!-- Modal Order -->
-  <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+
+<!-- Modal Order -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <div class="modal-title" id="exampleModalLongTitle">Order confirmation</div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-title" id="exampleModalLongTitle">Order confirmation</div>
+            </div>
+            
+            <div class="modal-body">
+                Are you Sure to Order this Vehicle ? <br> <br>
+                Model : {{cartValue.vehicleBrand}} <br>
+                Brand : {{cartValue.vehicleModel}} <br>
+                Color : {{cartValue.vehicleColor}} <br>
+                Variant : {{cartValue.manufactureYear}} <br>
+                Price : {{cartValue.price}} <br>
+                
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="order()">Yes</button>
+            </div>
         </div>
-        <div class="modal-body">
-            Are you Sure to Order this Vehicle ?
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
-          <button type="button" class="btn btn-primary"data-bs-dismiss="modal" (click)="order()">Yes</button>
-        </div>
-      </div>
     </div>
-  </div>
-
-
-
-
-
+</div>

@@ -12,33 +12,35 @@ import { UserServiceService } from 'src/app/Services/user-service.service';
 export class UserSignUpComponent {
 
   addressForm = this.fb.group({
-    firstName: [null, [Validators.required, Validators.minLength(4)]],
-    lastName: [null, [Validators.required, Validators.minLength(4)]],
+    firstName: [null, [Validators.required, Validators.minLength(2), Validators.pattern('^[a-zA-Z,.!?\\s-]*$')]],
+    lastName: [null, [Validators.required, Validators.minLength(4), Validators.pattern('^[a-zA-Z,.!?\\s-]*$')]],
     mobileNo: [null, [Validators.required, Validators.pattern("[0-9 ]{10}")]],
-    emailId: [null, [Validators.required, Validators.email]],
-    password: [null, Validators.required],
-    confirmPassword: [null, Validators.required]
+    email: [null, [Validators.required, Validators.email]],
+    password: [null, [Validators.required, Validators.minLength(4)]],
+    confirmPassword: [null, [Validators.required, Validators.minLength(4)]]
   });
-  
 
-  constructor(private fb: FormBuilder, private route: Router, private service: UserServiceService,private _snackBar:MatSnackBar) { }
+
+  constructor(private fb: FormBuilder, private route: Router, private service: UserServiceService, private _snackBar: MatSnackBar) { }
 
   onSubmit() {
 
-    if(this.addressForm.value.password==this.addressForm.value.confirmPassword){
-    this.service.register(this.addressForm.value).subscribe(data => {
-      this._snackBar.open('User-Register', 'successfully', {
-        duration: 1500,
-        panelClass: ['mat-toolbar', 'mat-warm']
+    if (this.addressForm.value.password == this.addressForm.value.confirmPassword) {
+      this.service.register(this.addressForm.value).subscribe(data => {
+        this._snackBar.open('User-Register', 'successfully', {
+          duration: 1500,
+          panelClass: ['mat-toolbar', 'mat-warm']
+        })
+      },(err:any)=>{
+        alert("Emaild already Exist , Please try again with different Email Id")
       })
-    })
-    this.route.navigateByUrl("/user-login")
-  }
-  else{
-    alert("Password and Confirm Password Not matched")
-  }
+
+      this.route.navigateByUrl("/user-login")
+    }
+    else {
+      alert("Password and Confirm Password Not matched Please try again with same values")
+    }
 
   }
 
-  // get firstName() { return this.addressForm.get("firstName") }
 }

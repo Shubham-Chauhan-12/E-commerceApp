@@ -12,6 +12,7 @@ import { UserServiceService } from 'src/app/Services/user-service.service';
 export class UserdashboardComponent implements OnInit {
 
   userVehicle: any[] = []
+  cartValue:any={}
 
   constructor(private service: UserServiceService, private route: Router, private _snackBar: MatSnackBar) { }
 
@@ -39,4 +40,12 @@ export class UserdashboardComponent implements OnInit {
       panelClass: ['mat-toolbar', 'mat-primary']
     })
   }
+
+
+  cart(model:any){
+    this.service.getOneVehicle(model).subscribe(data=>{
+      this.cartValue = data;
+    })
+  }
+ 
 }

@@ -54,5 +54,7 @@ export class UserServiceService {
     return this.http.get<Array<UserModel>>("http://localhost:8085/api/v1/userview-vehicle" , {headers:this.header})
   } 
 
-
+  getOneVehicle(vehicle:string):Observable<Object>{
+    return this.http.get<Object>("http://localhost:8085/api/v1/userview-vehicle/"+vehicle , {headers:this.header} )
+  }
 } 

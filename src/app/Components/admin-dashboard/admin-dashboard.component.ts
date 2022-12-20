@@ -42,13 +42,19 @@ export class AdminDashboardComponent {
 
 
   submit() {
+
     this.service.adminUpdate(this.editVehicleForm.value).subscribe(data => {
       this._snackBar.open('Vehicle Updated', 'successfully', {
         duration: 2000,
         panelClass: ['mat-toolbar', 'mat-warm']
       })
     })
+
+
+    window.location.href = "/admin-dashboard"
     
+
+
   }
 
 
@@ -68,7 +74,9 @@ export class AdminDashboardComponent {
       })
     })
 
-    window.onload
+   
+    window.location.href = "/admin-dashboard"
+    
   }
 
 
@@ -86,7 +94,8 @@ export class AdminDashboardComponent {
       })
     })
 
-    window.onload
+    window.location.href = "/admin-dashboard"
+    
   }
 
   preview(vehicleId: any) {
@@ -95,11 +104,14 @@ export class AdminDashboardComponent {
   }
 
   adminLogout() {
+
     this.service.guard = false
+
     this._snackBar.open('Admin LogOut', 'success', {
       duration: 2000,
       panelClass: ['mat-toolbar', 'mat-warm']
     })
+    
     this.router.navigate(['/header'])
   }
 

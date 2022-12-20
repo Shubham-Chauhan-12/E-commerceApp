@@ -3,7 +3,7 @@ export class UserModel{
 firstName?:string
 lastName?:string
 mobileNo?:number
-emailId?:string
+email?:string
 password?:string
 confirmPassword?:string
 vehicleBrand?:string
@@ -18,7 +18,7 @@ constructor(){
     this.firstName = "";
     this.lastName = "";
     this.mobileNo = 0;
-    this.emailId = "";
+    this.email = "";
     this.password = "";
     this.confirmPassword = "";
     this.vehicleBrand = "";
